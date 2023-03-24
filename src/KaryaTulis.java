@@ -1,12 +1,19 @@
+import javax.naming.InterruptedNamingException;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.*;
+import java.awt.color.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class KaryaTulis extends JFrame {
     // INSTANSIASI OBJEK KOMPONEN GUI
@@ -15,7 +22,8 @@ public class KaryaTulis extends JFrame {
     JLabel lBiodata = new JLabel("Form Biodata");
     JLabel lPenilaian = new JLabel("Form Penilaian (0-100)");
     JPanel PanelBiodata = new JPanel();
-    JPanel PanelPenialian = new JPanel();
+    JPanel PanelPenilaian = new JPanel();
+    Border border = new LineBorder(Color.GRAY, 1, true);
 
     JLabel lNama = new JLabel("Nama");
     JLabel lJurusan = new JLabel("Jurusan");
@@ -47,6 +55,8 @@ public class KaryaTulis extends JFrame {
         setLayout(null);
         setSize(1200, 1000);
 
+        PanelBiodata.setBorder(border);
+        PanelPenilaian.setBorder(border);
         PanelBiodata.add(lNama);
         PanelBiodata.add(lJurusan);
         PanelBiodata.add(lNim);
@@ -54,34 +64,85 @@ public class KaryaTulis extends JFrame {
         PanelBiodata.add(fJurusan);
         PanelBiodata.add(fNim);
 
-        PanelPenialian.add(lBahasa);
-        PanelPenialian.add(lEYD);
-        PanelPenialian.add(lKreativitas);
-        PanelPenialian.add(lStruktur);
-        PanelPenialian.add(fBahasa);
-        PanelPenialian.add(fEYD);
-        PanelPenialian.add(fKreativitas);
-        PanelPenialian.add(fStruktur);
+        PanelPenilaian.add(lBahasa);
+        PanelPenilaian.add(lEYD);
+        PanelPenilaian.add(lKreativitas);
+        PanelPenilaian.add(lStruktur);
+        PanelPenilaian.add(fBahasa);
+        PanelPenilaian.add(fEYD);
+        PanelPenilaian.add(fKreativitas);
+        PanelPenilaian.add(fStruktur);
 
-        add(lJudul);
-        add(lBiodata);
-        add(lPenilaian);
         add(btnSimpan);
         add(btnBatal);
+        add(lJudul);
+        add(lBiodata);
         add(PanelBiodata);
-        add(PanelPenialian);
+        add(lPenilaian);
+        add(PanelPenilaian);
 
-        lJudul.setBounds(100, 30, 200, 50);
+        lJudul.setBounds(250, 10, 200, 50);
         lJudul.setFont(new Font("Times New Roman", Font.BOLD, 18));
-        lBiodata.setBounds(50, 80, 200, 50);
+        lBiodata.setBounds(50, 60, 200, 50);
         lBiodata.setFont(new Font("Arial", Font.PLAIN, 16));
-        PanelBiodata.setBounds(50, 120, 300, 600);
-        lPenilaian.setBounds(50, 60, 400, 50);
+        PanelBiodata.setBounds(50, 110, 530, 160);
+        PanelBiodata.setLayout(null);
+
+        lNama.setBounds(15, 8, 50, 50);
+        lNama.setFont(new Font("Arial", Font.BOLD, 14));
+        fNama.setBounds(100, 18, 380, 25);
+
+        lJurusan.setBounds(15, 50, 100, 50);
+        lJurusan.setFont(new Font("Arial", Font.BOLD, 14));
+        fJurusan.setBounds(100, 63, 380, 25);
+
+        lNim.setBounds(15, 95, 100, 50);
+        lNim.setFont(new Font("Arial", Font.BOLD, 14));
+        fNim.setBounds(100, 108, 380, 25);
+
+        lPenilaian.setBounds(50, 300, 200, 50);
         lPenilaian.setFont(new Font("Arial", Font.PLAIN, 16));
-        PanelBiodata.setBounds(50, 500, 300, 600);
-        btnSimpan.setBounds(140, 400, 150, 50);
-        btnBatal.setBounds(200, 400, 150, 50);
-        this.setSize(400, 500);
+
+        PanelPenilaian.setBounds(50, 350, 530, 200);
+        PanelPenilaian.setLayout(null);
+
+        lBahasa.setBounds(15, 8, 150, 50);
+        lBahasa.setFont(new Font("Arial", Font.BOLD, 14));
+        fBahasa.setBounds(120, 18, 380, 25);
+
+        lEYD.setBounds(15, 50, 100, 50);
+        lEYD.setFont(new Font("Arial", Font.BOLD, 14));
+        fEYD.setBounds(120, 63, 380, 25);
+
+        lStruktur.setBounds(15, 95, 100, 50);
+        lStruktur.setFont(new Font("Arial", Font.BOLD, 14));
+        fStruktur.setBounds(120, 108, 380, 25);
+
+        lKreativitas.setBounds(15, 140, 100, 50);
+        lKreativitas.setFont(new Font("Arial", Font.BOLD, 14));
+        fKreativitas.setBounds(120, 155, 380, 25);
+
+        btnSimpan.setBounds(230, 600, 100, 30);
+        btnBatal.setBounds(350, 600, 100, 30);
+        this.setSize(650, 700);
         this.setVisible(true);
     }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnSimpan) {
+            // String nama = fNama.getText();
+            // String nim = fNama.getText();
+            // String jurusan = fNama.getText();
+            // String nilaiBahasa = fNama.getText();
+            // Integer nilai;
+            // String keterangan
+            // if()
+            // HasilPenilaian hasil = new HasilPenilaian(nama, nim, jurusan, nilai,
+            // keterangan);
+        }
+        if (e.getSource() == btnBatal) {
+            CiptaPuisi puisi = new CiptaPuisi();
+        }
+    }
+
 }

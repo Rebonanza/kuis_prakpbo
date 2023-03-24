@@ -10,27 +10,13 @@ import java.awt.font.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HomePage extends JFrame {
+public class HomePage extends JFrame implements ActionListener {
     // INSTANSIASI OBJEK KOMPONEN GUI
     JLabel lJudul = new JLabel("Aplikasi Penilaian Lomba Karya Tulis dan Cipta Puisi");
     JLabel lUniv = new JLabel("UPN \"Veteran\" Yogyakarta");
     JButton btnKartul = new JButton("Karya Tulis");
     JButton btnPuisi = new JButton("Cipta Puisi");
     JButton btnClose = new JButton("Close");
-    // JLabel lUsername = new JLabel("Username");
-    // JLabel lPassword = new JLabel("Password");
-
-    // JTextField fJudul = new JTextField();
-    // JTextField fUsername = new JTextField();
-    // JPasswordField fPassword = new JPasswordField();
-
-    // JTable table;
-    // JScrollPane scrollPane;
-    // Object namaKolom[] = {"Kode", "Judul", "Jumlah"};
-    // String query, dataPilih, kodeLama;
-    // String data[][];
-    // String dbTabel = "";
-    // Connect koneksi = new Connect(); //cek koneksi
 
     public HomePage() {
         setTitle("Aplikasi Penilaian Lomba Karya Tulis dan Cipta Puisi");
@@ -49,10 +35,20 @@ public class HomePage extends JFrame {
         btnKartul.setBounds(200, 160, 150, 50);
         btnPuisi.setBounds(400, 160, 150, 50);
         btnClose.setBounds(650, 300, 80, 30);
+        btnKartul.addActionListener(this);
+        btnPuisi.addActionListener(this);
         this.setSize(800, 400);
         this.setVisible(true);
     }
 
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnKartul) {
+            KaryaTulis kartul = new KaryaTulis();
+        }
+        if (e.getSource() == btnPuisi) {
+            CiptaPuisi puisi = new CiptaPuisi();
+        }
+    }
     // btnLogin.addActionListener(new ActionListener() {
     // @Override
     // public void actionPerformed(ActionEvent e) {
